@@ -15,49 +15,38 @@ for (var z = 0; z < 15; ++z) {
     matrixIds[z] = epsgCode + ':' + z;
 }
 
-// var map = new ol.Map({
-//     layers: [
-//         new ol.layer.Tile({
-//             title: 'Norges grunnkart',
-//             source: new ol.source.WMTS({
-//                 url: 'http://opencache.statkart.no/gatekeeper/gk/gk.open_wmts?',
-//                 layer: 'norges_grunnkart_graatone',
-//                 matrixSet: epsgCode,
-//                 format: 'image/png',
-//                 projection: projection,
-//                 tileGrid: new ol.tilegrid.WMTS({
-//                     origin: ol.extent.getTopLeft(projection.getExtent()),
-//                     resolutions: resolutions,
-//                     matrixIds: matrixIds
-//                 }),
-//                 attributions: [new ol.control.Attribution({
-//                     html: 'Utvikling: <a href="http://mastermaps.com/">MasterMaps</a> - Kartdata: <a href="http://kartverket.no/">Kartverket</a>'
-//                 })]
-//             })
-//         })
-//     ],
-//     target: 'map',
-//     view: new ol.View({
-//         projection: projection,
-//         center: [421656.74, 6191674.00],
-//         zoom: 11,
-//         minZoom: 8,
-//         maxZoom: 13
-//     })
-// });
+
 
 var map = new ol.Map({
-    target: 'map',
     layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM()
-      })
+        new ol.layer.Tile({
+            title: 'Norges grunnkart',
+            source: new ol.source.WMTS({
+                url: 'http://opencache.statkart.no/gatekeeper/gk/gk.open_wmts?',
+                layer: 'norges_grunnkart_graatone',
+                matrixSet: epsgCode,
+                format: 'image/png',
+                projection: projection,
+                tileGrid: new ol.tilegrid.WMTS({
+                    origin: ol.extent.getTopLeft(projection.getExtent()),
+                    resolutions: resolutions,
+                    matrixIds: matrixIds
+                }),
+                attributions: [new ol.control.Attribution({
+                    html: 'Utvikling: <a href="http://mastermaps.com/">MasterMaps</a> - Kartdata: <a href="http://kartverket.no/">Kartverket</a>'
+                })]
+            })
+        })
     ],
+    target: 'map',
     view: new ol.View({
-        center: ol.proj.fromLonLat([-4.2518,55.8642]),
-      zoom: 10
+        projection: projection,
+        center: [262985, 6651604],
+        zoom: 11,
+        minZoom: 8,
+        maxZoom: 13
     })
-  });
+});
 
 var scaleLineControl = new ol.control.ScaleLine();
 
@@ -73,7 +62,7 @@ createLegend(colorScale);
 var csv = d3.dsv(' ', 'text/plain');
 
 // Read and convert data to JavaScript array
-csv('data/Oslo_bef_100m_2015.csv').get(function(error, data) {
+csv('data/Oslo_bef_100m_2015.csv').get(function (error, data) {
 
     // Convert to GeoJSON
     var geojson = ssbgrid2geojson(data, gridSize, 'rute_100m');
@@ -100,7 +89,7 @@ csv('data/Oslo_bef_100m_2015.csv').get(function(error, data) {
                     color: [rgb.r, rgb.g, rgb.b, 0.6]
                 }),
                 geometry: new ol.geom.Polygon([[
-                    [x,y], [x, y + gridSize], [x + gridSize, y + gridSize], [x + gridSize, y]
+                    [x, y], [x, y + gridSize], [x + gridSize, y + gridSize], [x + gridSize, y]
                 ]])
             })
         ];
@@ -124,7 +113,7 @@ csv('data/Oslo_bef_100m_2015.csv').get(function(error, data) {
                     color: [rgb.r, rgb.g, rgb.b, 0.6]
                 }),
                 geometry: new ol.geom.Polygon([[
-                    [x,y], [x, y + gridSize], [x + gridSize, y + gridSize], [x + gridSize, y]
+                    [x, y], [x, y + gridSize], [x + gridSize, y + gridSize], [x + gridSize, y]
                 ]])
             })
         ];
@@ -177,18 +166,18 @@ csv('data/Oslo_bef_100m_2015.csv').get(function(error, data) {
         d3.select('.info .intro').style('display', 'block');
         d3.select('.info .select').style('display', 'none');
 
-        grid.forEachFeatureIntersectingExtent(extent, function(feature) {
+        grid.forEachFeatureIntersectingExtent(extent, function (feature) {
             if (pointInPolygon(feature.getGeometry().getCoordinates(), drawCoords)) {
                 selectedGridCells.push(feature);
             }
         });
 
-        setTimeout(function(){ // Add delay to avoid deselect
+        setTimeout(function () { // Add delay to avoid deselect
             gridSelect.setActive(true);
         }, 500);
     });
 
-    d3.select('.info a').on('click', function(){
+    d3.select('.info a').on('click', function () {
         d3.event.preventDefault();
         selectedGridCells.clear();
         gridSelect.setActive(false);
@@ -200,12 +189,12 @@ csv('data/Oslo_bef_100m_2015.csv').get(function(error, data) {
 });
 
 
-function showPopulation (population) {
+function showPopulation(population) {
     d3.select('.info span').text(numberFormat(population));
 }
 
 // Based on http://bl.ocks.org/mbostock/4573883
-function createLegend (colorScale) {
+function createLegend(colorScale) {
     var x = d3.scale.linear()
         .domain([0, 617])
         .range([0, 340]);
@@ -219,7 +208,7 @@ function createLegend (colorScale) {
     var svg = d3.select('svg.legend');
 
     svg.selectAll('rect')
-        .data(colorScale.range().map(function(color) {
+        .data(colorScale.range().map(function (color) {
             var d = colorScale.invertExtent(color);
             if (d[0] == null) d[0] = x.domain()[0];
             if (d[1] == null) d[1] = x.domain()[1];
@@ -227,9 +216,9 @@ function createLegend (colorScale) {
         }))
         .enter().append('rect')
         .attr('height', 10)
-        .attr("x", function(d) { return x(d[0]); })
-        .attr('width', function(d) { return x(d[1]) - x(d[0]); })
-        .style('fill', function(d) { return colorScale(d[0]); });
+        .attr("x", function (d) { return x(d[0]); })
+        .attr('width', function (d) { return x(d[1]) - x(d[0]); })
+        .style('fill', function (d) { return colorScale(d[0]); });
 
     svg.call(xAxis);
 }
@@ -237,7 +226,7 @@ function createLegend (colorScale) {
 // From https://github.com/substack/point-in-polygon, MIT licence
 // Ray-casting algorithm based on
 // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-function pointInPolygon (point, vs) {
+function pointInPolygon(point, vs) {
     var x = point[0], y = point[1];
 
     var inside = false;
@@ -255,13 +244,13 @@ function pointInPolygon (point, vs) {
 
 
 // Convert SSBgrid data to GeoJSON
-function ssbgrid2geojson (data, size, ssbid) {
+function ssbgrid2geojson(data, size, ssbid) {
     var points = {
         type: 'FeatureCollection',
         features: []
     };
 
-    data.forEach(function(d){
+    data.forEach(function (d) {
         var id = d[ssbid],
             x = parseInt(id.substring(0, 7)) - 2000000, // First seven digits minus false easting
             y = parseInt(id.substring(7, 14)); // Last seven digits
@@ -279,22 +268,3 @@ function ssbgrid2geojson (data, size, ssbid) {
 
     return points;
 }
-
-
-function loadJSONFile(callback) {   
-
-    var xmlobj = new XMLHttpRequest();
-
-    xmlobj.overrideMimeType("application/json");
-
-    xmlobj.open('GET', '../data/GEOSTAT_Grid__December_2011__Boundaries.geojson', true); // Provide complete path to your json file here. Change true to false for synchronous loading.
-
-    xmlobj.onreadystatechange = function () {
-          if (xmlobj.readyState == 4 && xmlobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xmlobj.responseText);
-          }
-    };
-
-    xmlobj.send(null);  
- }
