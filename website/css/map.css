@@ -18,12 +18,15 @@ a {
 
 /* Legend style */
 .info {
-    position: realtive;
+    position: static;
+	float: left;
     background-color: coral;/*#fff;*/
     /*background-color: rgba(255,255,255,0.9);*/
     bottom: 10px;
     left: 10px;
     padding: 10px;
+	width: 48.5%;
+	height: 85px;
 }
 .info h1 {
     margin: 0;
@@ -43,6 +46,23 @@ a {
     font-weight: bold;
 }
 .info .small {
+    font-size: 0.7em;
+    margin: 7px 0 0;
+}
+
+.infop2 {
+    position: static;
+	float: right;
+    background-color: coral;/*#fff;*/
+    /*background-color: rgba(255,255,255,0.9);*/
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+	width: 48.5%;
+	height: 85px;
+}
+
+.infop2 .small {
     font-size: 0.7em;
     margin: 7px 0 0;
 }
