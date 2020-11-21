@@ -190,7 +190,7 @@ csv('data/Oslo_bef_100m_2015.csv').get(function (error, data) {
 
 
 function showPopulation(population) {
-    d3.select('.info span').text(numberFormat(population));
+    d3.select('.infop2 span').text(numberFormat(population));
 }
 
 // Based on http://bl.ocks.org/mbostock/4573883

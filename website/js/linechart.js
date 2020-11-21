@@ -1,12 +1,15 @@
-    // Creating SVG container
-    var svg = d3.select("body").append("svg")
-      .attr("width", 960)
-      .attr("height", 500)
-
     // Defining dimensions
 	var margin = { top: 35, right: 0, bottom: 30, left: 40 };
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
+		
+   // Creating SVG container
+    var chart = d3.select("body").append("svg")
+        .attr("width", 960)
+        .attr("height", 500)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
     
     // http://bl.ocks.org/zanarmstrong/raw/05c1e95bf7aa16c4768e/
     var parseDate = d3.time.format("%Y-%m");
@@ -24,9 +27,17 @@
         .x(function(d) { return x(d.name); })
         .y(function(d) { return y(d.value); });
     
-    var g = svg.append("g")
+    var g = chart.append("g")
     	.attr("transform", "translate(50, 0)")
-    
+		
+	chart.append("g")
+	    .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(x);
+	  
+    chart.append("g")
+	    .attr("class", "y axis")
+        .call(y);
 
     // Importing and processing data
     d3.json("data/dataset.json", function(data) {
@@ -87,7 +98,7 @@
           });
 
       	// Displaying x values
-        svg.selectAll("text").data(data).enter()
+        chart.selectAll("text").data(data).enter()
          .append("text")
           .text(function(d, i) { return displayDate(d.date); })
           .attr("y", 420)
@@ -98,7 +109,12 @@
       	
       	// Creating paths
         g.selectAll("path").data([data]).enter().append("path")
-          .attr("class", "line")
-          .attr("d", line);
+          //.attr("class", ".line")
+          .attr("d", line)
+		  .attr("fill", "none")
+		  .attr("stroke", "black")
+		  .attr("stroke-width", 1.5);
+
+        
       
     });

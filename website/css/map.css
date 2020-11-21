@@ -20,12 +20,12 @@ a {
 .info {
     position: static;
 	float: left;
-    background-color: coral;/*#fff;*/
+    background-color: #F0F8FF;/*#fff;*/
     /*background-color: rgba(255,255,255,0.9);*/
     bottom: 10px;
     left: 10px;
     padding: 10px;
-	width: 48.5%;
+	width: 45%;
 	height: 85px;
 }
 .info h1 {
@@ -53,12 +53,12 @@ a {
 .infop2 {
     position: static;
 	float: right;
-    background-color: coral;/*#fff;*/
+    background-color: #F0F8FF;/*#fff;*/
     /*background-color: rgba(255,255,255,0.9);*/
     bottom: 10px;
     left: 10px;
     padding: 10px;
-	width: 48.5%;
+	width: 45%;
 	height: 85px;
 }
 
