@@ -1,0 +1,21 @@
+<resources>
+    <string-array name="country_arrays">
+        <item>Choose Preferred Country </item>
+        <item>Bangladesh</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+    <string name="signUp">SIGN UP</string>
+    <string name="app_name">CovidCompass</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="redirect_login">Already Have an Account?  Sign in</string>
+    <string name="redirect_signup">First Time User?  Sign Up</string>
+    <string name="slogan">Be Aware</string>
+    <string name="email">E-Mail</string>
+</resources>
