@@ -149,8 +149,10 @@ svg {
 }
 
 svg path {
-    display: none;
+    /*display: none;*/
+	display: black;
 }
+
 
 svg line {
     stroke: #000;

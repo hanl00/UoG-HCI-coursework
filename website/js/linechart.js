@@ -1,120 +1,223 @@
-    // Defining dimensions
-	var margin = { top: 35, right: 0, bottom: 30, left: 40 };
-    var width = 960 - margin.left - margin.right;
-    var height = 500 - margin.top - margin.bottom;
-		
-   // Creating SVG container
-    var chart = d3.select("body").append("svg")
-        .attr("width", 960)
-        .attr("height", 500)
-	  .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// Draw a line chart
+//var svg = d3.select('svg'),
+var svg = d3.select('#mylines'),
+  margin = { top: 35, right: 0, bottom: 30, left: 40 },
+  //width = 960 - margin.left - margin.right,
+  width = +svg.attr('width') - margin.left - margin.right,
+  //height = 500 - margin.top - margin.bottom,
+  height = +svg.attr('height') - margin.top - margin.bottom,
+  g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+// Graph title
+g.append('text')
+  .attr('x', (width / 2))             
+  .attr('y', 0 - (margin.top / 3))
+  .attr('text-anchor', 'middle')  
+  .style('font-size', '16px') 
+  .text('Evolution of Covid cases by region over time');
+// Function to convert a string into a time
+var parseTime = d3.time.format('%Y-%m-%d %H:%M').parse;
+// Function to show specific time format
+var formatTime = d3.time.format('%e %B');
 
-    
-    // http://bl.ocks.org/zanarmstrong/raw/05c1e95bf7aa16c4768e/
-    var parseDate = d3.time.format("%Y-%m");
-    var displayDate = d3.time.format("%b %y");
-    var displayValue = d3.format(",.0f");
-    
-    // Ordinal scale
-    var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .5);
+// Set the X scale
+var x = d3.time.scale().range([0, width], 0.5);
+// Set the Y scale
+var y = d3.scale.linear().range([height, 0]);
+// Set the color scale
+var color = d3.scale.category10();
 
-    var y = d3.scale.linear()
-        .range([height, height - 200]);
+var xAxis = d3.svg.axis()
+.scale(x)
+.orient("bottom");
 
-    var line = d3.svg.line()
-        .x(function(d) { return x(d.name); })
-        .y(function(d) { return y(d.value); });
-    
-    var g = chart.append("g")
-    	.attr("transform", "translate(50, 0)")
-		
-	chart.append("g")
-	    .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(x);
-	  
-    chart.append("g")
-	    .attr("class", "y axis")
-        .call(y);
+var yAxis = d3.svg.axis()
+.scale(y)
+.orient("left");
 
-    // Importing and processing data
-    d3.json("data/dataset.json", function(data) {
-        // Pre-processing
-        data.forEach(function(d) {
-          d.value;// = +d.value;
-          d["date"] = parseDate.parse(d["date"]);
-        });
+var line = d3.svg.line()
+// .interpolate("basis")
+.x(function(d) {
+  return x(d.date);
+})
+.y(function(d) {
+  return y(d.worth);
+});
+  
+  // load the data
+d3.json("data/dataset.json", function(error, data) {
+  // Select the important columns
+  color.domain(d3.keys(data[0]).filter(function(key) {
+      return key !== "Time" && key !== "_id";
+  }));
+  // Correct the types
+  data.forEach(function(d) {
+    d.date = parseTime(d.Time);
+  });
+  console.log(data);
 
-        x.domain(data.map(function(d) { return d.name; }));
-        y.domain([0, d3.max(data, function(d) { return d.value; })]);
+  var currencies = color.domain().map(function(name) {
+    return {
+      name: name,
+      values: data.map(function(d) {
+        return {
+          date: d.date,
+          worth: +d[name]
+        };
+      })
+    };
+  });
+  console.log(currencies)
+  // Set the X domain
+  x.domain(d3.extent(data, function(d) {
+    return d.date;
+  }));
+  // Set the Y domain
+  y.domain([
+    d3.min(currencies, function(c) {
+      return d3.min(c.values, function(v) {
+        return v.worth;
+      });
+    }),
+    d3.max(currencies, function(c) {
+      return d3.max(c.values, function(v) {
+        return v.worth;
+      });
+    })
+  ]);
+  // Set the X axis
+  g.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+  // Set the Y axis
+  g.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Value (USD)");
 
-      	// Creating circle element for each element
-      	g.selectAll("circle").data(data).enter().append("circle")
-     			.attr("cx", function(d) { return x(d.name);})
-          .attr("cy", function(d) { return y(d.value); })
-          .attr("r", 10)
-          .style("fill","grey")
-        
-        	// Treating mouseover event
-      		.on("mouseover", function(d) {
-          	// Changing style of the circle and defining transition 
-            d3.select(this).transition().duration(500)
-              .style("fill", "red")
-              .attr("r", 20)
-            	.style("font-size", 24);
-          
-          	// Displaying data value above circle
-          	g.append("text")
-            	.attr("x", function() { return x(d.name) - 5})
-            	.attr("y", function() { return y(d.value) - 30})
-            	.text(function() { return d.value})
-            	.attr("id", "text_id")
-            
-            // Creating line between circle and axis
-            g.append("line")
-            	.attr("x1", function() { return x(d.name)})
-            	.attr("y1", function() { return y(d.value)})
-            	.attr("x2", function() { return x(d.name)})
-            	.attr("y2", height)
-            	.style("stroke-dasharray","5,5")
-            	.style("stroke","black");
-            
-          })
-        	// Treating mouseout event
-          .on("mouseout", function(d) {
-          	// Putting style back to default values
-            d3.select(this)
-              .transition().duration(500)
-              .style("fill", "grey")
-              .attr("r", 10)
-              .style("font-size", 12)
-            
-            // Deleting extra elements
-            d3.select("#text_id").remove();
-            d3.selectAll("line").remove();
-           
-          });
+  // Draw the lines
+  var currency = g.selectAll(".currency")
+    .data(currencies)
+    .enter().append("g")
+    .attr("class", "currency");
 
-      	// Displaying x values
-        chart.selectAll("text").data(data).enter()
-         .append("text")
-          .text(function(d, i) { return displayDate(d.date); })
-          .attr("y", 420)
-          .attr("x", function(d) { return x(d.name); })
-          .style("font-size", 10)
-          .style("font-family", "monospace");
-
-      	
-      	// Creating paths
-        g.selectAll("path").data([data]).enter().append("path")
-          //.attr("class", ".line")
-          .attr("d", line)
-		  .attr("fill", "none")
-		  .attr("stroke", "black")
-		  .attr("stroke-width", 1.5);
-
-        
-      
+  currency.append("path")
+    .attr("class", "line")
+    .attr("d", function(d) {
+      return line(d.values);
+    })
+    .style("stroke", function(d) {
+      return color(d.name);
     });
+  // Add the circles
+  currency.append("g").selectAll("circle")
+    .data(function(d){return d.values})
+    .enter()
+    .append("circle")
+    .attr("r", 2)
+    .attr("cx", function(dd){return x(dd.date)})
+    .attr("cy", function(dd){return y(dd.worth)})
+    .attr("fill", "none")
+    .attr("stroke", function(d){return color(this.parentNode.__data__.name)});
+  // Add label to the end of the line
+  currency.append("text")
+    .attr("class", "label")
+    .datum(function (d) {
+      return {
+        name: d.name,
+        value: d.values[d.values.length - 1]
+      };
+    })
+    .attr("transform", function (d) {
+      return "translate(" + x(d.value.date) + "," + y(d.value.worth) + ")";
+    })
+    .attr("x", 3)
+    .attr("dy", ".35em")
+    .text(function (d) {
+      return d.name;
+  });
+
+// Add the mouse line
+var mouseG = g.append("g")
+  .attr("class", "mouse-over-effects");
+
+mouseG.append("path")
+  .attr("class", "mouse-line")
+  .style("stroke", "black")
+  .style("stroke-width", "1px")
+  .style("opacity", "0");
+
+var lines = document.getElementsByClassName('line');
+
+var mousePerLine = mouseG.selectAll('.mouse-per-line')
+  .data(currencies)
+  .enter()
+  .append("g")
+  .attr("class", "mouse-per-line");
+
+mousePerLine.append("circle")
+  .attr("r", 7)
+  .style("stroke", function (d) {
+    return color(d.name);
+  })
+  .style("fill", "none")
+  .style("stroke-width", "2px")
+  .style("opacity", "0");
+
+mousePerLine.append("text")
+    .attr("class", "hover-text")
+    .attr("dy", "-1em")
+    .attr("transform", "translate(10,3)");
+
+// Append a rect to catch mouse movements on canvas
+mouseG.append('svg:rect') 
+  .attr('width', width) 
+  .attr('height', height)
+  .attr('fill', 'none')
+  .attr('pointer-events', 'all')
+  .on('mouseout', function () { // on mouse out hide line, circles and text
+    d3.select(".mouse-line")
+      .style("opacity", "0");
+    d3.selectAll(".mouse-per-line circle")
+      .style("opacity", "0");
+    d3.selectAll(".mouse-per-line text")
+      .style("opacity", "0");
+  })
+  .on('mouseover', function () { // on mouse in show line, circles and text
+    d3.select(".mouse-line")
+      .style("opacity", "1");
+    d3.selectAll(".mouse-per-line circle")
+      .style("opacity", "1");
+    d3.selectAll(".mouse-per-line text")
+      .style("opacity", "1");
+  })
+  .on('mousemove', function () { // mouse moving over canvas
+    var mouse = d3.mouse(this);
+
+    d3.selectAll(".mouse-per-line")
+      .attr("transform", function (d, i) {
+
+        var xDate = x.invert(mouse[0]),
+          bisect = d3.bisector(function (d) { return d.date; }).left;
+        idx = bisect(d.values, xDate);
+
+        d3.select(this).select('text')
+          .text(y.invert(y(d.values[idx].worth)).toFixed(2));
+
+        d3.select(".mouse-line")
+          .attr("d", function () {
+            var data = "M" + x(d.values[idx].date) + "," + height;
+            data += " " + x(d.values[idx].date) + "," + 0;
+            return data;
+          });
+        return "translate(" + x(d.values[idx].date) + "," + y(d.values[idx].worth) + ")";
+      });
+  });
+    
+
+});
