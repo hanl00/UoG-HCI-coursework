@@ -148,9 +148,9 @@ svg {
     font-weight: bold;
 }
 
-svg path {
+/* svg path {
     display: none;
-}
+} */
 
 svg line {
     stroke: #000;
