@@ -1,106 +1,106 @@
 [
 	{
 		"Time": "2017-05-03 23:17",
-		"BTC": 19.7,
-		"DOGE": 0,
-		"ETH": 78.88,
-		"LTC": 20.81,
-		"REP": 0
+		"Deaths": 19.7,
+		"Recovered": 0,
+		"Tests": 78.88,
+		"Reanimation": 20.81,
+		"Positive Cases": 11.22
 	},
 	{
 		"Time": "2017-05-04 20:18",
-		"BTC": 21.21,
-		"DOGE": 0,
-		"ETH": 90.45,
-		"LTC": 24.91,
-		"REP": 0
+		"Deaths": 21.21,
+		"Recovered": 0,
+		"Tests": 90.45,
+		"Reanimation": 24.91,
+		"Positive Cases": 12.34
 	},
 	{
 		"Time": "2017-05-05 19:11",
-		"BTC": 20.1,
-		"DOGE": 11.58,
-		"ETH": 91.73,
-		"LTC": 24.06,
-		"REP": 0
+		"Deaths": 20.1,
+		"Recovered": 11.58,
+		"Tests": 91.73,
+		"Reanimation": 24.06,
+		"Positive Cases": 12.10
 	},
 	{
 		"Time": "2017-05-06 18:56",
-		"BTC": 20.28,
-		"DOGE": 12.37,
-		"ETH": 92.78,
-		"LTC": 25.91,
-		"REP": 0
+		"Deaths": 20.28,
+		"Recovered": 12.37,
+		"Tests": 92.78,
+		"Reanimation": 25.91,
+		"Positive Cases": 11.11
 	},
 	{
 		"Time": "2017-05-09 0:50",
-		"BTC": 21.77,
-		"DOGE": 20.34,
-		"ETH": 89.27,
-		"LTC": 28.45,
-		"REP": 0
+		"Deaths": 21.77,
+		"Recovered": 20.34,
+		"Tests": 89.27,
+		"Reanimation": 28.45,
+		"Positive Cases": 17.45
 	},
 	{
 		"Time": "2017-05-09 2:15",
-		"BTC": 21.99,
-		"DOGE": 20.58,
-		"ETH": 88.62,
-		"LTC": 28.49,
-		"REP": 34.7
+		"Deaths": 21.99,
+		"Recovered": 20.58,
+		"Tests": 88.62,
+		"Reanimation": 28.49,
+		"Positive Cases": 23.7
 	},
 	{
 		"Time": "2017-05-09 23:59",
-		"BTC": 22.46,
-		"DOGE": 17.51,
-		"ETH": 87.45,
-		"LTC": 30.14,
-		"REP": 32.45
+		"Deaths": 22.46,
+		"Recovered": 17.51,
+		"Tests": 87.45,
+		"Reanimation": 30.14,
+		"Positive Cases": 32.45
 	},
 	{
 		"Time": "2017-05-11 0:57",
-		"BTC": 23.15,
-		"DOGE": 18.83,
-		"ETH": 86.94,
-		"LTC": 32.18,
-		"REP": 34.36
+		"Deaths": 23.15,
+		"Recovered": 18.83,
+		"Tests": 86.94,
+		"Reanimation": 32.18,
+		"Positive Cases": 34.36
 	},
 	{
 		"Time": "2017-05-11 22:17",
-		"BTC": 24.17,
-		"DOGE": 17.48,
-		"ETH": 87.87,
-		"LTC": 29.62,
-		"REP": 34.36
+		"Deaths": 24.17,
+		"Recovered": 17.48,
+		"Tests": 87.87,
+		"Reanimation": 29.62,
+		"Positive Cases": 34.36
 	},
 	{
 		"Time": "2017-05-12 1:55",
-		"BTC": 24.13,
-		"DOGE": 17.99,
-		"ETH": 88.05,
-		"LTC": 30.02,
-		"REP": 36.08
+		"Deaths": 24.13,
+		"Recovered": 17.99,
+		"Tests": 88.05,
+		"Reanimation": 30.02,
+		"Positive Cases": 36.08
 	},
 	{
 		"Time": "2017-05-13 1:57",
-		"BTC": 22.41,
-		"DOGE": 17.48,
-		"ETH": 85.25,
-		"LTC": 27,
-		"REP": 33.72
+		"Deaths": 22.41,
+		"Recovered": 17.48,
+		"Tests": 85.25,
+		"Reanimation": 27,
+		"Positive Cases": 33.72
 	},
 	{
 		"Time": "2017-05-14 15:32",
-		"BTC": 23.67,
-		"DOGE": 17.04,
-		"ETH": 89.19,
-		"LTC": 28.9,
-		"REP": 34.24
+		"Deaths": 23.67,
+		"Recovered": 17.04,
+		"Tests": 89.19,
+		"Reanimation": 28.9,
+		"Positive Cases": 34.24
 	},
 	{
 		"Time": "2017-05-14 23:34",
-		"BTC": 23.47,
-		"DOGE": 17.51,
-		"ETH": 88.6,
-		"LTC": 28.01,
-		"REP": 33.72
+		"Deaths": 23.47,
+		"Recovered": 17.51,
+		"Tests": 88.6,
+		"Reanimation": 28.01,
+		"Positive Cases": 33.72
 	}
 ]
