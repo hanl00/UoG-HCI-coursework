@@ -1,7 +1,7 @@
 // Draw a line chart
 //var svg = d3.select('svg'),
 var svg = d3.select('#mylines'),
-  margin = { top: 35, right: 0, bottom: 30, left: 40 },
+  margin = { top: 20, right: 70, bottom: 30, left: 50 },
   //width = 960 - margin.left - margin.right,
   width = +svg.attr('width') - margin.left - margin.right,
   //height = 500 - margin.top - margin.bottom,
@@ -98,7 +98,7 @@ d3.json("data/dataset.json", function(error, data) {
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
-    .text("Value (USD)");
+    .text("Covid Cases (%)");
 
   // Draw the lines
   var currency = g.selectAll(".currency")
