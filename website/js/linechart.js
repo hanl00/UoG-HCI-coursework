@@ -13,7 +13,7 @@ g.append('text')
   .attr('y', 0 - (margin.top / 3))
   .attr('text-anchor', 'middle')  
   .style('font-size', '16px') 
-  .text('Evolution of Covid cases by region over time');
+  .text('Covid Statistics for selected region');
 // Function to convert a string into a time
 var parseTime = d3.time.format('%Y-%m-%d %H:%M').parse;
 // Function to show specific time format
@@ -54,6 +54,32 @@ d3.json("data/dataset.json", function(error, data) {
     d.date = parseTime(d.Time);
   });
   console.log(data);
+  /*
+	  d3.select("body").selectAll("input")
+	.data([11, 22, 33, 44])
+	.enter()
+	.append('label')
+		.attr('for',function(d,i){ return 'a'+i; })
+		.text(function(d) { return d; })
+	.append("input")
+		.attr("checked", true)
+		.attr("type", "checkbox")
+		.attr("id", function(d,i) { return 'a'+i; })
+		.attr("onClick", "change(this)");
+		
+		
+		d3.select("body").selectAll("input")
+	.data([11, 22, 33, 44])
+	.enter()
+	.append("label")
+	.append("input")
+	.attr("checked", true)
+	.attr("type", "checkbox")
+	.attr("id", function(d,i) { return i; })
+	.attr("onClick", "change(this)")
+	.attr("for", function(d,i) { return i; });
+ */
+d3.selectAll("label").text(function(d) { return d; });
 
   var currencies = color.domain().map(function(name) {
     return {
@@ -221,3 +247,47 @@ mouseG.append('svg:rect')
     
 
 });
+
+
+
+
+
+function getVals(){
+  // Get slider values
+  var parent = this.parentNode;
+  var slides = parent.getElementsByTagName("input");
+  var months = [ "January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December" ];
+		   
+    var slide1 = parseFloat( slides[0].value );
+    var slide2 = parseFloat( slides[1].value );
+  // Neither slider will clip the other, so make sure we determine which is larger
+  if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+  
+  var displayElement = parent.getElementsByClassName("rangeValues")[0];
+  
+  var dayNumber1 = slide1%31
+  var dayNumber2 = slide2%31
+  var monthNumber1 = Math.floor(slide1/30)
+  var monthNumber2 = Math.floor(slide2/30)
+  var selectedMonth1 = months[monthNumber1];
+  var selectedMonth2 = months[monthNumber2];
+  
+      //displayElement.innerHTML =dayNumber1 + " " + dayNumber2
+	  displayElement.innerHTML = selectedMonth1 + " "+ dayNumber1 +" 2020    -     " + selectedMonth2 +" " +dayNumber2+" 2020";
+}
+
+window.onload = function(){
+  // Initialize Sliders
+  var sliderSections = document.getElementsByClassName("range-slider");
+      for( var x = 0; x < sliderSections.length; x++ ){
+        var sliders = sliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+}

@@ -1,106 +1,106 @@
 [
 	{
 		"Time": "2017-05-03 23:17",
-		"Deaths": 19.7,
+		"Deaths": 9.89,
 		"Recovered": 0,
-		"Tests": 78.88,
-		"Reanimation": 20.81,
+		"Tests": 34.3,
+		"Severe Cases": 20.81,
 		"Positive Cases": 11.22
 	},
 	{
 		"Time": "2017-05-04 20:18",
-		"Deaths": 21.21,
-		"Recovered": 0,
-		"Tests": 90.45,
-		"Reanimation": 24.91,
-		"Positive Cases": 12.34
+		"Deaths": 11.1,
+		"Recovered": 1.1,
+		"Tests": 40.2,
+		"Severe Cases": 22.21,
+		"Positive Cases": 12.31
 	},
 	{
 		"Time": "2017-05-05 19:11",
-		"Deaths": 20.1,
-		"Recovered": 11.58,
-		"Tests": 91.73,
-		"Reanimation": 24.06,
+		"Deaths": 10.95,
+		"Recovered": 1.9,
+		"Tests": 47.89,
+		"Severe Cases": 24.06,
 		"Positive Cases": 12.10
 	},
 	{
 		"Time": "2017-05-06 18:56",
-		"Deaths": 20.28,
-		"Recovered": 12.37,
-		"Tests": 92.78,
-		"Reanimation": 25.91,
+		"Deaths": 10.1,
+		"Recovered": 3.4,
+		"Tests": 56.72,
+		"Severe Cases": 25.91,
 		"Positive Cases": 11.11
 	},
 	{
 		"Time": "2017-05-09 0:50",
-		"Deaths": 21.77,
-		"Recovered": 20.34,
-		"Tests": 89.27,
-		"Reanimation": 28.45,
-		"Positive Cases": 17.45
+		"Deaths": 9.99,
+		"Recovered": 4.5,
+		"Tests": 67.38,
+		"Severe Cases": 23.11,
+		"Positive Cases": 13.32
 	},
 	{
 		"Time": "2017-05-09 2:15",
-		"Deaths": 21.99,
-		"Recovered": 20.58,
-		"Tests": 88.62,
-		"Reanimation": 28.49,
-		"Positive Cases": 23.7
+		"Deaths": 9.13,
+		"Recovered": 6.7,
+		"Tests": 66.2,
+		"Severe Cases": 22.12,
+		"Positive Cases": 14.47
 	},
 	{
 		"Time": "2017-05-09 23:59",
-		"Deaths": 22.46,
-		"Recovered": 17.51,
-		"Tests": 87.45,
-		"Reanimation": 30.14,
-		"Positive Cases": 32.45
+		"Deaths": 8.76,
+		"Recovered": 7.89,
+		"Tests": 63.12,
+		"Severe Cases": 20.90,
+		"Positive Cases": 16.17
 	},
 	{
 		"Time": "2017-05-11 0:57",
-		"Deaths": 23.15,
-		"Recovered": 18.83,
-		"Tests": 86.94,
-		"Reanimation": 32.18,
-		"Positive Cases": 34.36
+		"Deaths": 8.12,
+		"Recovered": 8.99,
+		"Tests": 62.78,
+		"Severe Cases": 19.10,
+		"Positive Cases": 19.21
 	},
 	{
 		"Time": "2017-05-11 22:17",
-		"Deaths": 24.17,
-		"Recovered": 17.48,
-		"Tests": 87.87,
-		"Reanimation": 29.62,
-		"Positive Cases": 34.36
+		"Deaths": 4.54,
+		"Recovered": 10.11,
+		"Tests": 60.16,
+		"Severe Cases": 17.1,
+		"Positive Cases": 24.78
 	},
 	{
 		"Time": "2017-05-12 1:55",
-		"Deaths": 24.13,
-		"Recovered": 17.99,
-		"Tests": 88.05,
-		"Reanimation": 30.02,
-		"Positive Cases": 36.08
+		"Deaths": 4.11,
+		"Recovered": 12.89,
+		"Tests": 47.2,
+		"Severe Cases": 19.87,
+		"Positive Cases": 29.92
 	},
 	{
 		"Time": "2017-05-13 1:57",
-		"Deaths": 22.41,
-		"Recovered": 17.48,
+		"Deaths": 4.99,
+		"Recovered": 14.21,
 		"Tests": 85.25,
-		"Reanimation": 27,
+		"Severe Cases": 21.22,
 		"Positive Cases": 33.72
 	},
 	{
 		"Time": "2017-05-14 15:32",
-		"Deaths": 23.67,
-		"Recovered": 17.04,
-		"Tests": 89.19,
-		"Reanimation": 28.9,
+		"Deaths": 5.6,
+		"Recovered": 15.28,
+		"Tests": 52.56,
+		"Severe Cases": 17.32,
 		"Positive Cases": 34.24
 	},
 	{
 		"Time": "2017-05-14 23:34",
-		"Deaths": 23.47,
-		"Recovered": 17.51,
-		"Tests": 88.6,
-		"Reanimation": 28.01,
+		"Deaths": 5.88,
+		"Recovered": 15.89,
+		"Tests": 54.64,
+		"Severe Cases": 13.57,
 		"Positive Cases": 33.72
 	}
 ]
