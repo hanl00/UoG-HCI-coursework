@@ -1,12 +1,13 @@
+
 // Draw a line chart
 //var svg = d3.select('svg'),
-var svg = d3.select('#mylines'),
+var svgGraph = d3.select('#mylines'),
   margin = { top: 20, right: 70, bottom: 30, left: 50 },
   //width = 960 - margin.left - margin.right,
-  width = +svg.attr('width') - margin.left - margin.right,
+  width = +svgGraph.attr('width') - margin.left - margin.right,
   //height = 500 - margin.top - margin.bottom,
-  height = +svg.attr('height') - margin.top - margin.bottom,
-  g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+  height = +svgGraph.attr('height') - margin.top - margin.bottom,
+  g = svgGraph.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 // Graph title
 g.append('text')
   .attr('x', (width / 2))             
@@ -42,9 +43,54 @@ var line = d3.svg.line()
 .y(function(d) {
   return y(d.worth);
 });
-  
+
+
+
+
+function deletee() { 
+//d3.select("svgGraph").remove();
+//d3.selectAll("svgGraph > *").remove();
+svgGraph.selectAll('*').remove();
+}
+
+function update(mydata) {
+
+deletee()
+
+//var buttons = document.getElementsByClassName('button');
+//var parent = this.parentNode;
+//var buttonname = parent.getElementsByTagName("button");
+//var buttonname = document.getElementById("mylines").value;
+
+// Draw a line chart
+//var svg = d3.select('svg'),
+var svgGraph = d3.select('#mylines'),
+  margin = { top: 20, right: 70, bottom: 30, left: 50 },
+  //width = 960 - margin.left - margin.right,
+  width = +svgGraph.attr('width') - margin.left - margin.right,
+  //height = 500 - margin.top - margin.bottom,
+  height = +svgGraph.attr('height') - margin.top - margin.bottom,
+  g = svgGraph.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+// Graph title
+g.append('text')
+  .attr('x', (width / 2))             
+  .attr('y', 0 - (margin.top / 3))
+  .attr('text-anchor', 'middle')  
+  .style('font-size', '16px') 
+  .text('Evolution of various Covid statistics over time in different regions');
+
+
+
+
+
+
+
+
+
+
+	
   // load the data
-d3.json("data/dataset.json", function(error, data) {
+d3.json(mydata, function(error, data) {
   // Select the important columns
   color.domain(d3.keys(data[0]).filter(function(key) {
       return key !== "Time" && key !== "_id";
@@ -248,6 +294,8 @@ mouseG.append('svg:rect')
 
 });
 
+
+};
 
 
 
