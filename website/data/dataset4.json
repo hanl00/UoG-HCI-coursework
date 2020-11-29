@@ -1,0 +1,106 @@
+[
+	{
+		"Time": "2017-05-03 23:17",
+		"Deaths": 11,
+		"Recovered": 0,
+		"Tests": 10,
+		"Severe Cases": 35,
+		"Positive Cases": 11.22
+	},
+	{
+		"Time": "2017-05-04 20:18",
+		"Deaths": 13,
+		"Recovered": 2,
+		"Tests": 12,
+		"Severe Cases": 42,
+		"Positive Cases": 12.31
+	},
+	{
+		"Time": "2017-05-05 19:11",
+		"Deaths": 17,
+		"Recovered": 4,
+		"Tests": 15,
+		"Severe Cases": 40,
+		"Positive Cases": 13
+	},
+	{
+		"Time": "2017-05-06 18:56",
+		"Deaths": 21,
+		"Recovered": 9,
+		"Tests": 23,
+		"Severe Cases": 38,
+		"Positive Cases": 15
+	},
+	{
+		"Time": "2017-05-09 0:50",
+		"Deaths": 22,
+		"Recovered": 14,
+		"Tests": 30,
+		"Severe Cases": 35,
+		"Positive Cases": 18
+	},
+	{
+		"Time": "2017-05-09 2:15",
+		"Deaths": 20,
+		"Recovered": 20,
+		"Tests": 35,
+		"Severe Cases": 34,
+		"Positive Cases": 25
+	},
+	{
+		"Time": "2017-05-09 23:59",
+		"Deaths": 18,
+		"Recovered": 25,
+		"Tests": 41,
+		"Severe Cases": 30,
+		"Positive Cases": 30
+	},
+	{
+		"Time": "2017-05-11 0:57",
+		"Deaths": 15,
+		"Recovered": 28,
+		"Tests": 50,
+		"Severe Cases": 27,
+		"Positive Cases": 31
+	},
+	{
+		"Time": "2017-05-11 22:17",
+		"Deaths": 13,
+		"Recovered": 28,
+		"Tests": 52,
+		"Severe Cases": 22,
+		"Positive Cases": 32
+	},
+	{
+		"Time": "2017-05-12 1:55",
+		"Deaths": 9,
+		"Recovered": 26,
+		"Tests": 51,
+		"Severe Cases": 20,
+		"Positive Cases": 34
+	},
+	{
+		"Time": "2017-05-13 1:57",
+		"Deaths": 5,
+		"Recovered": 24,
+		"Tests": 47,
+		"Severe Cases": 19,
+		"Positive Cases": 31
+	},
+	{
+		"Time": "2017-05-14 15:32",
+		"Deaths": 1,
+		"Recovered": 23,
+		"Tests": 38,
+		"Severe Cases": 17.32,
+		"Positive Cases": 30
+	},
+	{
+		"Time": "2017-05-14 23:34",
+		"Deaths": 0,
+		"Recovered": 21,
+		"Tests": 34,
+		"Severe Cases": 17,
+		"Positive Cases": 28
+	}
+]
